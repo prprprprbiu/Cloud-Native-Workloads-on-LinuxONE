@@ -8,6 +8,18 @@ module.exports = mongoose.model('Todo', {
     }
 });
 
+// Define the schema
+module.exports = mongoose.model('Bank', {
+    customer: {
+        customer_id: int,
+        name: String,
+        password: String,
+        account_id: int,
+        balance: double,
+        default: ''
+    }
+});
+
 // Database: Bank
 
 // Table 1: Customer
