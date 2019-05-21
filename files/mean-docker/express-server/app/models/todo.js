@@ -9,16 +9,16 @@ module.exports = mongoose.model('Todo', {
 });
 
 // Define the schema
-module.exports = mongoose.model('Bank', {
+/*module.exports = mongoose.model('Bank', {
     customer: {
-        customer_id: int,
+        customer_id: Int,
         name: String,
         password: String,
-        account_id: int,
-        balance: double,
+        account_id: Int,
+        balance: Double,
         default: ''
     }
-});
+});*/
 
 // Database: Bank
 
