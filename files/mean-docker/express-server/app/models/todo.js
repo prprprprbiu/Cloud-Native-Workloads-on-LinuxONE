@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var BankSchema = new Schema({
+module.exports = mongoose.model('Bank', {
     customer: {
         customer_id: Number,
         name: String,
@@ -9,8 +9,6 @@ var BankSchema = new Schema({
         balance: Number,
     }
 });
-
-module.exports = mongoose.model('Bank', BankSchema);
 
 // Database: Bank
 
