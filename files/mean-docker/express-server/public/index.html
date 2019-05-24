@@ -48,39 +48,36 @@
 						<!-- BIND THIS VALUE TO customer.password IN ANGULAR -->
 						<input type="text" class="form-control input-lg text-center" placeholder="please input customer's secret" ng-model="customer.password">
 
-						<!-- checkCustomer() WILL CHECK CUSTOMER -->
-						<button type="submit" class="btn btn-primary btn-lg" ng-click="checkCustomer(customer.id, customer.password)">Sign in</button>
-						<!-- addCustomer() WILL Add CUSTOMER -->
-						<button type="submit" class="btn btn-primary btn-lg" ng-click="addCustomer(customer.id, customer.password)">Sign up</button>
-
 					</div>
 				</form>
+
+				<!-- checkCustomer() WILL CHECK CUSTOMER -->
+				<button type="submit" class="btn btn-primary btn-lg" ng-click="checkCustomer(customer.id, customer.password)">Sign in</button>
+				<!-- addCustomer() WILL Add CUSTOMER -->
+				<button type="submit" class="btn btn-primary btn-lg" ng-click="addCustomer(customer.id, customer.password)">Sign up</button>
+			</div>
+		</div>
+
+		<!-- ACCOUNT LIST -->
+		<div id="account-list" class="row" ng-show = 'isSignIn'>
+			<div class="col-sm-4 col-sm-offset-4">
+
+				<!-- LOOP OVER THE ACCOUNTS IN $scope.accounts -->
+				<div class="checkbox" ng-repeat="account in .accounts">
+					<label>
+						<input type="checkbox" ng-click="selectAccount(account.id)"> {{ account.id: account.balance }}
+					</label>
+				</div>
+
+				<p class="text-center" ng-show="loading">
+					<span class="fa fa-spinner fa-spin fa-3x"></span>
+				</p>
 
 			</div>
 		</div>
 
-		<!-- FORM TO ACCESS ACCOUNTS AND CHOOSE OPERATIONS -->
+		<!-- FORM TO ADD ACCOUNT -->
 		<div id="account-form" class="row">
-			
-			<!-- ACCOUNT LIST -->
-			<div id="account-list" class="row" ng-show = 'isSignIn'>
-				<div class="col-sm-4 col-sm-offset-4">
-
-					<!-- LOOP OVER THE ACCOUNTS IN $scope.accounts -->
-					<div class="checkbox" ng-repeat="account in .accounts">
-						<label>
-							<input type="checkbox" ng-click="selectAccount(account.id)"> {{ account.id: account.balance }}
-						</label>
-					</div>
-
-					<p class="text-center" ng-show="loading">
-						<span class="fa fa-spinner fa-spin fa-3x"></span>
-					</p>
-
-				</div>
-			</div>
-
-			<!-- FORM TO ADD ACCOUNT -->
 			<div class="col-sm-8 col-sm-offset-2 text-center">
 				<form>
 					<div class="form-group">
@@ -88,31 +85,30 @@
 						<!-- BIND THIS VALUE TO account.id IN ANGULAR -->
 						<input type="text" class="form-control input-lg text-center" placeholder="please input accound's id" ng-model="account.id">
 
-						<!-- addAccount() WILL ADD ACCOUNT -->
-						<button type="submit" class="btn btn-primary btn-lg" ng-click="addAccount(account.id)">Add Account</button>
+					</div>
+				</form>
+
+				<!-- addAccount() WILL ADD ACCOUNT -->
+				<button type="submit" class="btn btn-primary btn-lg" ng-click="addAccount(account.id)">Add Account</button>
+			</div>
+		</div>
+
+		<!-- FORM TO ECHO FEATURES -->
+		<div id="feature-form" class="row">
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+				<form>
+					<div class="form-group">
+
+						<!-- BIND THIS VALUE TO account.balance IN ANGULAR -->
+						<input type="text" class="form-control input-lg text-center" placeholder="please input the amount of money" ng-model="account.temp">
 
 					</div>
 				</form>
-			</div>
 
-			<!-- FORM TO ECHO FEATURES -->
-			<div id="feature-form" class="row">
-				<div class="col-sm-8 col-sm-offset-2 text-center">
-					<form>
-						<div class="form-group">
-
-							<!-- BIND THIS VALUE TO account.balance IN ANGULAR -->
-							<input type="text" class="form-control input-lg text-center" placeholder="please input the amount of money" ng-model="account.temp">
-
-						</div>
-
-						<!-- CALLBACK WILL DO ACCORDING OPERATIONS -->
-						<button type="submit" class="btn btn-primary btn-lg" ng-click="withdraw()" ng-show=isWithdraw>Withdraw</button>
-						<button type="submit" class="btn btn-primary btn-lg" ng-click="deposit()" ng-show=isDeposit>Deposit</button>
-						<button type="submit" class="btn btn-primary btn-lg" ng-click="invest()" ng-show=isInvest>Invest</button>
-
-					</form>
-				</div>
+				<!-- CALLBACK WILL DO ACCORDING OPERATIONS -->
+				<button type="submit" class="btn btn-primary btn-lg" ng-click="withdraw()" ng-show=isWithdraw>Withdraw</button>
+				<button type="submit" class="btn btn-primary btn-lg" ng-click="deposit()" ng-show=isDeposit>Deposit</button>
+				<button type="submit" class="btn btn-primary btn-lg" ng-click="invest()" ng-show=isInvest>Invest</button>
 			</div>
 		</div>
 
