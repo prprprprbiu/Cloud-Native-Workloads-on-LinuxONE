@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
-	<title>Node/Angular Todo App</title>
+	<title>Welcome to SCUT Bank APP</title>
 
 	<!-- SCROLLS -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
@@ -31,111 +31,112 @@
 <body ng-controller="mainController">
 	<div class="container">
 
-		{% comment %} TODO: 欢迎语 {% endcomment %}
-		<!-- HEADER AND TODO COUNT -->
+		<!-- HEADER TO WELCOME -->
 		<div class="jumbotron text-center">
-			<h1>So many things so little time..<span class="label label-info">{{ todos.length }}</span></h1>
+			<h1>Welcome to SCUT Bank APP</h1>
 		</div>
 
-		<!-- FORM TO CREATE TODOS -->
-		<div id="todo-form" class="row">
+		<!-- FORM TO LOGIN CUSTOMER -->
+		<div id="customer-form" class="row">
 			<div class="col-sm-8 col-sm-offset-2 text-center">
+				
 				<form>
 					<div class="form-group">
 
-						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="todo's go here" ng-model="formData.text">
+						<!-- BIND THIS VALUE TO customer.id IN ANGULAR -->
+						<input type="text" class="form-control input-lg text-center" placeholder="please input customer's id" ng-model="customer.id">
+						<!-- BIND THIS VALUE TO customer.password IN ANGULAR -->
+						<input type="text" class="form-control input-lg text-center" placeholder="please input customer's secret" ng-model="customer.password">
+
+						<!-- checkCustomer() WILL CHECK CUSTOMER -->
+						<button type="submit" class="btn btn-primary btn-lg" ng-click="checkCustomer(customer.id, customer.password)">Sign in</button>
+						<!-- addCustomer() WILL Add CUSTOMER -->
+						<button type="submit" class="btn btn-primary btn-lg" ng-click="addCustomer(customer.id, customer.password)">Sign up</button>
 
 					</div>
-
-					<!-- createToDo() WILL CREATE NEW TODOS -->
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
 				</form>
+
 			</div>
 		</div>
 
-		<!-- FORM TO CREATE TODOS -->
-		<div id="todo-form" class="row">
-			<div class="col-sm-8 col-sm-offset-2 text-center">
-				<form>
-					<div class="form-group">
+		<!-- FORM TO ACCESS ACCOUNTS AND CHOOSE OPERATIONS -->
+		<div id="account-form" class="row">
+			
+			<!-- ACCOUNT LIST -->
+			<div id="account-list" class="row" ng-show = 'isSignIn'>
+				<div class="col-sm-4 col-sm-offset-4">
 
-						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="todo's go here" ng-model="formData.text">
-
+					<!-- LOOP OVER THE ACCOUNTS IN $scope.accounts -->
+					<div class="checkbox" ng-repeat="account in .accounts">
+						<label>
+							<input type="checkbox" ng-click="selectAccount(account.id)"> {{ account.id: account.balance }}
+						</label>
 					</div>
 
-					<!-- createToDo() WILL CREATE NEW TODOS -->
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
-				</form>
-			</div>
-		</div>
+					<p class="text-center" ng-show="loading">
+						<span class="fa fa-spinner fa-spin fa-3x"></span>
+					</p>
 
-		<!-- TODO LIST -->
-		<div id="todo-list" class="row">
-			<div class="col-sm-4 col-sm-offset-4">
-
-				<!-- LOOP OVER THE TODOS IN $scope.todos -->
-				<div class="checkbox" ng-repeat="todo in todos">
-					<label>
-						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
-					</label>
 				</div>
-
-				<p class="text-center" ng-show="loading">
-					<span class="fa fa-spinner fa-spin fa-3x"></span>
-				</p>
-
 			</div>
-		</div>
 
-		<!-- TODO LIST -->
-		<div id="todo-list" class="row">
-			<div class="col-sm-4 col-sm-offset-4">
+			<!-- FORM TO ADD ACCOUNT -->
+			<form>
+				<div class="form-group">
 
-				<!-- LOOP OVER THE TODOS IN $scope.todos -->
-				<div class="checkbox" ng-repeat="todo in todos">
-					<label>
-						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
-					</label>
+					<!-- BIND THIS VALUE TO account.id IN ANGULAR -->
+					<input type="text" class="form-control input-lg text-center" placeholder="please input accound's id" ng-model="account.id">
+
+					<!-- addAccount() WILL ADD ACCOUNT -->
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="addAccount(account.id)">Add Account</button>
+
 				</div>
+			</form>
 
-				<p class="text-center" ng-show="loading">
-					<span class="fa fa-spinner fa-spin fa-3x"></span>
-				</p>
+			<!-- FEATURE LIST -->
+			<div id="feature-list" class="row" ng-show = 'isSelectAccount'>
+				<div class="col-sm-4 col-sm-offset-4">
 
-			</div>
-		</div>
-
-		<!-- FORM TO CREATE TODOS -->
-		<div id="todo-form" class="row">
-			<div class="col-sm-8 col-sm-offset-2 text-center">
-				<form>
-					<div class="form-group">
-
-						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="todo's go here" ng-model="formData.text">
-
+					<!-- LOOP OVER THE FEATURES IN $scope.features -->
+					<div class="checkbox" ng-repeat="feature in .features">
+						<label>
+							<input type="checkbox" ng-click="selectFeature(feature.text)"> {{ feature.text }}
+						</label>
 					</div>
 
-					<!-- createToDo() WILL CREATE NEW TODOS -->
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
-				</form>
+					<p class="text-center" ng-show="loading">
+						<span class="fa fa-spinner fa-spin fa-3x"></span>
+					</p>
+
+				</div>
+			</div>
+
+			<!-- FORM TO ECHO FEATURES -->
+			<div id="feature-form" class="row">
+				<div class="col-sm-8 col-sm-offset-2 text-center">
+					<form>
+						<div class="form-group">
+
+							<!-- BIND THIS VALUE TO account.balance IN ANGULAR -->
+							<input type="text" class="form-control input-lg text-center" placeholder="please input the amount of money" ng-model="account.temp">
+
+						</div>
+
+						<!-- CALLBACK WILL DO ACCORDING OPERATIONS -->
+						<button type="submit" class="btn btn-primary btn-lg" ng-click="withdraw()" ng-show=isWithdraw>Confirm</button>
+						<button type="submit" class="btn btn-primary btn-lg" ng-click="deposit()" ng-show=isDeposit>Confirm</button>
+						<button type="submit" class="btn btn-primary btn-lg" ng-click="invest()" ng-show=isInvest>Confirm</button>
+
+					</form>
+				</div>
 			</div>
 		</div>
 
-		<div class="text-center text-muted">
+		<!-- FOOTER ABOUT US -->
+		<div class="jumbotron text-center">
 			<p>With ❤ from <a href="https://www.ibm.com/linuxone">LinuxONE</a></p>
 		</div>
+
 	</div>
 </body>
 </html>
-
-
-<!-- 1. 欢迎语 -->
-<!-- 2. 银行账号输入表单 -->
-<!-- 3. 银行密码输入表单 -->
-<!-- 4. 银行账户选择单选 -->
-<!-- 5. 功能列表选择按钮 -->
-<!-- 6. 功能金额输入表单 -->
-<!-- 7. 结束语 -->

@@ -1,24 +1,16 @@
 var mongoose = require('mongoose');
 
-// Define the schema
-module.exports = mongoose.model('Todo', {
-    text: {
-        type: String,
-        default: ''
+var BankSchema = new Schema({
+    customer: {
+        customer_id: Number,
+        name: String,
+        password: String,
+        account_id: Number,
+        balance: Number,
     }
 });
 
-// Define the schema
-/*module.exports = mongoose.model('Bank', {
-    customer: {
-        customer_id: Int,
-        name: String,
-        password: String,
-        account_id: Int,
-        balance: Double,
-        default: ''
-    }
-});*/
+module.exports = mongoose.model('Bank', BankSchema);
 
 // Database: Bank
 
