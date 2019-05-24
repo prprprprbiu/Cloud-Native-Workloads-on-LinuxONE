@@ -11,10 +11,6 @@ app.controller('mainController', function($scope) {
 		id: '',
 		balance: 0.0,
 	};
-	$scope.features = [];
-	$scope.feature = {
-		text:''
-	}
 	$scope.isSignIn = false;
 	$scope.isSelectAccount = false;
 

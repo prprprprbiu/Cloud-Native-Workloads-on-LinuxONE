@@ -81,34 +81,18 @@
 			</div>
 
 			<!-- FORM TO ADD ACCOUNT -->
-			<form>
-				<div class="form-group">
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+				<form>
+					<div class="form-group">
 
-					<!-- BIND THIS VALUE TO account.id IN ANGULAR -->
-					<input type="text" class="form-control input-lg text-center" placeholder="please input accound's id" ng-model="account.id">
+						<!-- BIND THIS VALUE TO account.id IN ANGULAR -->
+						<input type="text" class="form-control input-lg text-center" placeholder="please input accound's id" ng-model="account.id">
 
-					<!-- addAccount() WILL ADD ACCOUNT -->
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="addAccount(account.id)">Add Account</button>
+						<!-- addAccount() WILL ADD ACCOUNT -->
+						<button type="submit" class="btn btn-primary btn-lg" ng-click="addAccount(account.id)">Add Account</button>
 
-				</div>
-			</form>
-
-			<!-- FEATURE LIST -->
-			<div id="feature-list" class="row" ng-show = 'isSelectAccount'>
-				<div class="col-sm-4 col-sm-offset-4">
-
-					<!-- LOOP OVER THE FEATURES IN $scope.features -->
-					<div class="checkbox" ng-repeat="feature in .features">
-						<label>
-							<input type="checkbox" ng-click="selectFeature(feature.text)"> {{ feature.text }}
-						</label>
 					</div>
-
-					<p class="text-center" ng-show="loading">
-						<span class="fa fa-spinner fa-spin fa-3x"></span>
-					</p>
-
-				</div>
+				</form>
 			</div>
 
 			<!-- FORM TO ECHO FEATURES -->
@@ -123,9 +107,9 @@
 						</div>
 
 						<!-- CALLBACK WILL DO ACCORDING OPERATIONS -->
-						<button type="submit" class="btn btn-primary btn-lg" ng-click="withdraw()" ng-show=isWithdraw>Confirm</button>
-						<button type="submit" class="btn btn-primary btn-lg" ng-click="deposit()" ng-show=isDeposit>Confirm</button>
-						<button type="submit" class="btn btn-primary btn-lg" ng-click="invest()" ng-show=isInvest>Confirm</button>
+						<button type="submit" class="btn btn-primary btn-lg" ng-click="withdraw()" ng-show=isWithdraw>Withdraw</button>
+						<button type="submit" class="btn btn-primary btn-lg" ng-click="deposit()" ng-show=isDeposit>Deposit</button>
+						<button type="submit" class="btn btn-primary btn-lg" ng-click="invest()" ng-show=isInvest>Invest</button>
 
 					</form>
 				</div>
