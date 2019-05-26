@@ -1,1 +1,1 @@
-angular.module('meanBank', ['bankController', 'bankService']);
+angular.module('meanTodo', ['todoController', 'todoService']);

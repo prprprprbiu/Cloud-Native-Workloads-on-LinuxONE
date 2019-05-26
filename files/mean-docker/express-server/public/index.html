@@ -1,17 +1,17 @@
 <!doctype html>
 
 <!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="meanBank">
+<html ng-app="meanTodo">
 <head>
 	<!-- META -->
-	<meta charset="utf-8"><!-- Set universal code -->
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
-	<title>Welcome to SCUT Bank APP</title>
+	<title>Node/Angular Todo App</title>
 
 	<!-- SCROLLS -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"><!-- load bootstrap -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 	<style>
 		html 					{ overflow-y:scroll; }
 		body 					{ padding-top:50px; }
@@ -20,7 +20,7 @@
 	</style>
 
 	<!-- SPELLS -->
-	<script src="//cdn.bootcss.com/angular.js/1.2.16/angular.min.js"></script><!-- load angular -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
 
 	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
 	<script src="js/services/todos.js"></script> <!-- load our todo service -->
@@ -31,88 +31,48 @@
 <body ng-controller="mainController">
 	<div class="container">
 
-		<!-- HEADER TO WELCOME -->
+		<!-- HEADER AND TODO COUNT -->
 		<div class="jumbotron text-center">
-			<h1>Welcome to SCUT Bank APP</h1>
+			<h1>So many things so little time..<span class="label label-info">{{ todos.length }}</span></h1>
 		</div>
 
-		<!-- FORM TO LOGIN CUSTOMER -->
-		<div id="customer-form" class="row">
-			<div class="col-sm-8 col-sm-offset-2 text-center">
-				
-				<form>
-					<div class="form-group">
-
-						<!-- BIND THIS VALUE TO customer.id IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="please input customer's id" ng-model="formData1.id">
-						<!-- BIND THIS VALUE TO customer.password IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="please input customer's secret" ng-model="formData1.password">
-
-					</div>
-				</form>
-
-				<!-- checkCustomer() WILL CHECK CUSTOMER -->
-				<button type="submit" class="btn btn-primary btn-lg" ng-click="checkCustomer()">Sign in</button>
-				<!-- addCustomer() WILL Add CUSTOMER -->
-				<button type="submit" class="btn btn-primary btn-lg" ng-click="addCustomer()">Sign up</button>
-			</div>
-		</div>
-
-		<!-- ACCOUNT LIST -->
-		<div id="account-list" class="row">
+		<!-- TODO LIST -->
+		<div id="todo-list" class="row">
 			<div class="col-sm-4 col-sm-offset-4">
 
-				<!-- LOOP OVER THE ACCOUNTS IN $scope.accounts -->
-				<div class="checkbox" ng-repeat="account in accounts">
+				<!-- LOOP OVER THE TODOS IN $scope.todos -->
+				<div class="checkbox" ng-repeat="todo in todos">
 					<label>
-						<input type="checkbox" ng-click="selectAccount(account.id)"> {{ account.id: account.balance }}
+						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
 					</label>
 				</div>
 
+				<p class="text-center" ng-show="loading">
+					<span class="fa fa-spinner fa-spin fa-3x"></span>
+				</p>
+
 			</div>
 		</div>
 
-		<!-- FORM TO ADD ACCOUNT -->
-		<div id="account-form" class="row">
+		<!-- FORM TO CREATE TODOS -->
+		<div id="todo-form" class="row">
 			<div class="col-sm-8 col-sm-offset-2 text-center">
 				<form>
 					<div class="form-group">
 
-						<!-- BIND THIS VALUE TO account.id IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="please input accound's id" ng-model="formData2.id">
+						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+						<input type="text" class="form-control input-lg text-center" placeholder="todo's go here" ng-model="formData.text">
 
 					</div>
-				</form>
 
-				<!-- addAccount() WILL ADD ACCOUNT -->
-				<button type="submit" class="btn btn-primary btn-lg" ng-click="addAccount()">Add Account</button>
+					<!-- createToDo() WILL CREATE NEW TODOS -->
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+				</form>
 			</div>
 		</div>
-
-		<!-- FORM TO ECHO FEATURES -->
-		<div id="feature-form" class="row">
-			<div class="col-sm-8 col-sm-offset-2 text-center">
-				<form>
-					<div class="form-group">
-
-						<!-- BIND THIS VALUE TO account.balance IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="please input the amount of money" ng-model="account.temp">
-
-					</div>
-				</form>
-
-				<!-- CALLBACK WILL DO ACCORDING OPERATIONS -->
-				<button type="submit" class="btn btn-primary btn-lg" ng-click="withdraw()">Withdraw</button>
-				<button type="submit" class="btn btn-primary btn-lg" ng-click="deposit()">Deposit</button>
-				<button type="submit" class="btn btn-primary btn-lg" ng-click="invest()">Invest</button>
-			</div>
-		</div>
-
-		<!-- FOOTER ABOUT US -->
-		<div class="jumbotron text-center">
+		<div class="text-center text-muted">
 			<p>With ❤ from <a href="https://www.ibm.com/linuxone">LinuxONE</a></p>
 		</div>
-
 	</div>
 </body>
 </html>
