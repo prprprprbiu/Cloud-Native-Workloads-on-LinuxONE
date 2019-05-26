@@ -23,7 +23,7 @@ angular.module('todoController', [])
 			if ($scope.formData.id != undefined && $scope.formData.pwd != undefined) {
 				$scope.loading = true;
 
-				alert($scope.formData.text);
+				alert($scope.formData.id);
 				alert($scope.formData.pwd);
 
 				// call the create function from our service (returns a promise object)
