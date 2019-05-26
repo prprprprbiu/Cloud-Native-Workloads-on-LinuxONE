@@ -15,9 +15,12 @@ angular.module('bankController', [])
 			});
 		};
 
-	// CREATE ==================================================================
+	// CREATE ======================	============================================
 	// when submitting the add form, send the text to the node API
 	$scope.addCustomer = function() {
+		alert($scope.formData1.id);
+		alert($scope.formData1.id);
+		
 		// validate the formData to make sure that something is there
 		// if form is empty, nothing will happen
 		if ($scope.formData1.id != undefined && $scope.formData1.password != undefined) {
