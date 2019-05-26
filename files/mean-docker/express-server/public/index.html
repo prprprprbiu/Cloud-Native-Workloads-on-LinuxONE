@@ -43,7 +43,7 @@
 				<!-- LOOP OVER THE TODOS IN $scope.todos -->
 				<div class="checkbox" ng-repeat="todo in todos">
 					<label>
-						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.id }}
+						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.pwd }}
 					</label>
 				</div>
 
@@ -61,10 +61,10 @@
 					<div class="form-group">
 
 						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="id's go here" ng-model="formData.id">
+						<input type="text" class="form-control input-lg text-center" placeholder="id's go here" ng-model="formData.pwd">
 
 												<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="pwd's go here" ng-model="formData1.id">
+						<input type="text" class="form-control input-lg text-center" placeholder="pwd's go here" ng-model="formData1.pwd">
 
 					</div>
 

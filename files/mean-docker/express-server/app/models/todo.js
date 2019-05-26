@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 // Define the schema
 module.exports = mongoose.model('Todo', {
-    id: {
+    pwd: {
         type: String,
         default: ''
     }
