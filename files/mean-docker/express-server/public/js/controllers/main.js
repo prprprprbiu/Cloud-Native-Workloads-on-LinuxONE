@@ -24,6 +24,8 @@ angular.module('todoController', [])
 			if ($scope.formData.pwd != undefined) {
 				$scope.loading = true;
 
+				alert($scope.formData.pwd);
+
 				// call the create function from our service (returns a promise object)
 				Todos.create($scope.formData)
 
@@ -39,6 +41,8 @@ angular.module('todoController', [])
 			// if form is empty, nothing will happen
 			if ($scope.formData1.pwd != undefined) {
 				$scope.loading = true;
+
+				alert($scope.formData1.pwd);
 
 				// call the create function from our service (returns a promise object)
 				Todos.create($scope.formData1)
