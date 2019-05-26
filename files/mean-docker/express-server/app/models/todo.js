@@ -6,8 +6,12 @@ module.exports = mongoose.model('Todo', {
         type: String,
         default: ''
     },
-    pwd: {
+    name: {
         type: String,
+        default: ''
+    },
+    balance: {
+        type: Number,
         default: ''
     }
 });
