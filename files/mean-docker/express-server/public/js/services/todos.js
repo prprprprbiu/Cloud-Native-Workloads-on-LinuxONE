@@ -1,17 +1,17 @@
-angular.module('todoService', [])
+angular.module('bankService', [])
 
 	// super simple service
 	// each function returns a promise object
-	.factory('Todos', ['$http',function($http) {
+	.factory('Customers', ['$http',function($http) {
 		return {
 			get : function() {
-				return $http.get('/api/todos');
+				return $http.get('/api/customers');
 			},
-			create : function(todoData) {
-				return $http.post('/api/todos', todoData);
+			create : function(customerData) {
+				return $http.post('/api/customers', customerData);
 			},
 			delete : function(id) {
-				return $http.delete('/api/todos/' + id);
+				return $http.delete('/api/customers/' + id);
 			}
 		}
 	}]);

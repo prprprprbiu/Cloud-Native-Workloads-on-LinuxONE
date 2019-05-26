@@ -1,17 +1,17 @@
 <!doctype html>
 
 <!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="meanTodo">
+<html ng-app="meanBank">
 <head>
 	<!-- META -->
-	<meta charset="utf-8">
+	<meta charset="utf-8"><!-- Set universal code -->
 	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
 	<title>Welcome to SCUT Bank APP</title>
 
 	<!-- SCROLLS -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"><!-- load bootstrap -->
 	<style>
 		html 					{ overflow-y:scroll; }
 		body 					{ padding-top:50px; }
@@ -44,34 +44,30 @@
 					<div class="form-group">
 
 						<!-- BIND THIS VALUE TO customer.id IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="please input customer's id" ng-model="customer.id">
+						<input type="text" class="form-control input-lg text-center" placeholder="please input customer's id" ng-model="formData1.id">
 						<!-- BIND THIS VALUE TO customer.password IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="please input customer's secret" ng-model="customer.password">
+						<input type="text" class="form-control input-lg text-center" placeholder="please input customer's secret" ng-model="formData1.password">
 
 					</div>
 				</form>
 
 				<!-- checkCustomer() WILL CHECK CUSTOMER -->
-				<button type="submit" class="btn btn-primary btn-lg" ng-click="checkCustomer(customer.id, customer.password)">Sign in</button>
+				<button type="submit" class="btn btn-primary btn-lg" ng-click="checkCustomer()">Sign in</button>
 				<!-- addCustomer() WILL Add CUSTOMER -->
-				<button type="submit" class="btn btn-primary btn-lg" ng-click="addCustomer(customer.id, customer.password)">Sign up</button>
+				<button type="submit" class="btn btn-primary btn-lg" ng-click="addCustomer()">Sign up</button>
 			</div>
 		</div>
 
 		<!-- ACCOUNT LIST -->
-		<div id="account-list" class="row" ng-show = 'isSignIn'>
+		<div id="account-list" class="row">
 			<div class="col-sm-4 col-sm-offset-4">
 
 				<!-- LOOP OVER THE ACCOUNTS IN $scope.accounts -->
-				<div class="checkbox" ng-repeat="account in .accounts">
+				<div class="checkbox" ng-repeat="account in accounts">
 					<label>
 						<input type="checkbox" ng-click="selectAccount(account.id)"> {{ account.id: account.balance }}
 					</label>
 				</div>
-
-				<p class="text-center" ng-show="loading">
-					<span class="fa fa-spinner fa-spin fa-3x"></span>
-				</p>
 
 			</div>
 		</div>
@@ -83,13 +79,13 @@
 					<div class="form-group">
 
 						<!-- BIND THIS VALUE TO account.id IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="please input accound's id" ng-model="account.id">
+						<input type="text" class="form-control input-lg text-center" placeholder="please input accound's id" ng-model="formData2.id">
 
 					</div>
 				</form>
 
 				<!-- addAccount() WILL ADD ACCOUNT -->
-				<button type="submit" class="btn btn-primary btn-lg" ng-click="addAccount(account.id)">Add Account</button>
+				<button type="submit" class="btn btn-primary btn-lg" ng-click="addAccount()">Add Account</button>
 			</div>
 		</div>
 
@@ -106,9 +102,9 @@
 				</form>
 
 				<!-- CALLBACK WILL DO ACCORDING OPERATIONS -->
-				<button type="submit" class="btn btn-primary btn-lg" ng-click="withdraw()" ng-show=isWithdraw>Withdraw</button>
-				<button type="submit" class="btn btn-primary btn-lg" ng-click="deposit()" ng-show=isDeposit>Deposit</button>
-				<button type="submit" class="btn btn-primary btn-lg" ng-click="invest()" ng-show=isInvest>Invest</button>
+				<button type="submit" class="btn btn-primary btn-lg" ng-click="withdraw()">Withdraw</button>
+				<button type="submit" class="btn btn-primary btn-lg" ng-click="deposit()">Deposit</button>
+				<button type="submit" class="btn btn-primary btn-lg" ng-click="invest()">Invest</button>
 			</div>
 		</div>
 

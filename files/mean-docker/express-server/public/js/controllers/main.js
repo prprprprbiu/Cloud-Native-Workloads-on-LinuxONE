@@ -1,18 +1,36 @@
-var app = angular.module('meanTodo', []);
+angular.module('bankController', [])
 
-app.controller('mainController', function($scope) {
-	$scope.customer = {
-		id: '',
-		password: '',
-		accounts: [],
+// inject the Bank service factory into our controller
+.controller('mainController', ['$scope', '$http', 'Customers', function($scope, $http, Customers) {
+	$scope.formData1 = {};
+	$scope.formData2 = {};
+
+	// GET =====================================================================
+	// when landing on the page, get all todos and show them
+	// use the service to get all the todos
+	$scope.checkCustomer = function() { 
+		Customers.get()
+			.success(function(data) {
+			// TODO: 和数据库交叉验证
+			});
+		};
+
+	// CREATE ==================================================================
+	// when submitting the add form, send the text to the node API
+	$scope.addCustomer = function() {
+		// validate the formData to make sure that something is there
+		// if form is empty, nothing will happen
+		if ($scope.formData1.id != undefined && $scope.formData1.password != undefined) {
+			// call the create function from our service (returns a promise object)
+			Customers.create($scope.formData1)
+
+				// if successful creation, call our get function to get all the new todos
+				.success(function(data) {
+					$scope.formData1 = {}; // clear the form so our user is ready to enter another
+					$scope.customers = data; // assign our new list of todos
+				});
+		}
 	};
-	$scope.accounts = [];
-	$scope.account = {
-		id: '',
-		balance: 0.0,
-	};
-	$scope.isSignIn = false;
-	$scope.isSelectAccount = false;
 
 });
 

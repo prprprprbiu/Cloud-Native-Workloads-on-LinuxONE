@@ -2,11 +2,11 @@ var mongoose = require('mongoose');
 
 module.exports = mongoose.model('Bank', {
     customer: {
-        customer_id: Number,
-        name: String,
-        password: String,
-        account_id: Number,
-        balance: Number,
+        customer_id: {type: Number, default: 233},
+        name: {type: String, default: 'LotteWong'},
+        password: {type: String, default: 'password'},
+        account_id: {type: Number, default: 666},
+        balance: {type: Number, default: 0.0},
     }
 });
 
